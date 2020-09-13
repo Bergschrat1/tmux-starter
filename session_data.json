@@ -1,0 +1,45 @@
+[
+	{
+		"name": "Maintenance",
+		"windows": [
+			{
+				"name": "status",
+				"panes": 4
+			},
+			{
+				"name": "configuration",
+				"panes": 2
+			},
+			{
+				"name": "updates",
+				"panes": 2
+			}
+		]
+	},
+	{
+		"name": "test2",
+		"windows": [
+			{
+				"name": "editor",
+				"panes" :"panes"
+			},
+			{
+				"name": "execution",
+				"panes": "panes"
+			}
+		]
+	},
+	{
+		"name": "test3",
+		"windows": [
+			{
+				"name": "editor",
+				"panes": "panes"
+			},
+			{
+				"name": "local_server",
+				"panes": "panes"
+			}
+		]
+	}
+]
