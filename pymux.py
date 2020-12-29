@@ -33,18 +33,16 @@ def getConfigPath():
     else:
         confPath = f'{home}/.config/pymux/session_data.json'
     if not os.path.exists(confPath):
-        raise FileNotFoundError(f'Config file not found at {confPath}. Specify another config path with the --config option')
+        raise FileNotFoundError(f'''Config file not found at {confPath}.
+Specify another config path with the --config option''')
     logging.debug(f'Returning config path {confPath}')
     return confPath
 
 
-def getSessionOptions(srvData):
+def getPossibleSessionNames(srvData):
     sessionOptions = [n['name'].lower() for n in srvData if n['default'] == False]
     return sessionOptions
 
-
-def tmux(command):
-    os.system(f'tmux {command}')
 
 def decideLayout(paneCount):
     if paneCount == 3:
@@ -54,6 +52,8 @@ def decideLayout(paneCount):
     else:
         return 'even-horizontal'
 
+
+## Session setup functions
 def setupWindow(windowObj, windowData):
     """Sets up all panes in the window"""
     paneCount = int(windowData['panes'])
@@ -116,7 +116,6 @@ if __name__ == "__main__":
                 sys.exit(1)
 
         raise ValueError(f"""This session name is undefined.
-Possible options are {getSessionOptions(serverData)}""")
-            #setupSession(serverObj, serverData)
+Possible options are {getPossibleSessionNames(serverData)}""")
     else:
         setupServer(serverObj, serverData)
