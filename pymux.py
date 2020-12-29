@@ -5,17 +5,39 @@ import json
 import libtmux
 import argparse
 import sys
+import logging
+
 
 global home
-home = os.path.expanduser('~')
 
 parser = argparse.ArgumentParser(description='Sets up your Tmux sessions.')
 parser.add_argument('--python', '-p', action='store_true')
 parser.add_argument('--session', '-s')
+parser.add_argument('--config', '-c')
+parser.add_argument('--debug', '-d', action='store_true')
 args = parser.parse_args()
 
+home = os.path.expanduser('~')
+
+if args.debug:
+    logging.basicConfig(level=logging.DEBUG, format=' %(asctime)s = %(levelname)s = %(message)s')
+else:
+    logging.disable()
+logging.debug('Start of programm')
 
 ## Utility functions
+def getConfigPath():
+    logging.debug('Getting config path.')
+    if args.config:
+        confPath = os.path.expanduser(args.config)
+    else:
+        confPath = f'{home}/.config/pymux/session_data.json'
+    if not os.path.exists(confPath):
+        raise FileNotFoundError(f'Config file not found at {confPath}. Specify another config path with the --config option')
+    logging.debug(f'Returning config path {confPath}')
+    return confPath
+
+
 def getSessionOptions(srvData):
     sessionOptions = [n['name'].lower() for n in srvData if n['default'] == False]
     return sessionOptions
@@ -81,8 +103,8 @@ def setupServer(server, serverData):
 
 if __name__ == "__main__":
     serverObj = libtmux.Server()
-    directory = os.path.dirname(os.path.realpath(__file__))
-    with open(f'{directory}/session_data.json', 'r') as f:
+    configPath = getConfigPath()
+    with open(configPath, 'r') as f:
         serverData = json.load(f)
     if args.python:
         os.system('setup_python_tmux')
