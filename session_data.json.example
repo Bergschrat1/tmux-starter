@@ -1,0 +1,47 @@
+[
+	{
+		"name": "Session1",
+		"windows": [
+			{
+				"name": "window1",
+				"panes": 4,
+				"commands": [
+					"top",
+					"pulsemixer",
+					"",
+					""
+				]
+			},
+			{
+				"name": "window2",
+				"panes": 1,
+				"commands": [
+					""
+				]
+			},
+			{
+				"name": "Maintenance",
+				"panes": 2
+			}
+		],
+		"default": true
+	},
+	{
+		"name": "Session2",
+		"windows": [
+			{
+				"name": "window1",
+				"panes": 1
+			},
+			{
+				"name": "window2",
+				"panes": 2
+			},
+			{
+				"name": "window3",
+				"panes": 3
+			}
+		],
+		"default": false
+	}
+]
