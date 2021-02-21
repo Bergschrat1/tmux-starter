@@ -3,11 +3,7 @@
 A little script to setup your tmux session. 
 
 ## Installation
-
-``` shell
-git clone git@github.com:Bergschrat1/tmux-starter.git && cd tmux-starter
-pip install .
-```
+Simply place `pymux.py` in your path. 
 
 ## Usage
 Create a file `session_data.json` at `~/.config/pymux/session_data.json`. You can also place the configuration at a path that you can specify with the `--config` option when calling the script.
